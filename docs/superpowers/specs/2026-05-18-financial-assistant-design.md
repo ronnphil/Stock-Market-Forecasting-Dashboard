@@ -20,7 +20,7 @@ Python: SQLite + LSTM model
     ↓  reads DB
 Streamlit Dashboard
 ```
-
+<!--  -->
 ### Layer 1 — Node.js API Server (`api/`)
 - **Framework:** Express.js
 - **Package:** `yahoo-finance2` for S&P 500 data (free, no API key)

@@ -1,8 +1,11 @@
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
 import streamlit as st
 import sqlite3
 import pandas as pd
 import requests
-import os
 from datetime import datetime, timedelta
 from dashboard.charts import build_historical_chart, build_forecast_chart
 
@@ -15,9 +18,17 @@ st.title('S&P 500 Dashboard')
 @st.cache_data(ttl=60)
 def get_live():
     try:
-        r = requests.get(f'{API_BASE}/live', timeout=5)
+        r = requests.get(f'{API_BASE}/live', timeout=3)
         r.raise_for_status()
         return r.json()
+    except Exception:
+        pass
+    try:
+        import yfinance as yf
+        info = yf.Ticker('^GSPC').fast_info
+        price, prev = info.last_price, info.previous_close
+        return {'price': price, 'change': price - prev,
+                'change_pct': (price - prev) / prev * 100}
     except Exception:
         return None
 
