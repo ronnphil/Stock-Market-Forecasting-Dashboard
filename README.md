@@ -3,6 +3,7 @@
 - Built a full-stack web app displaying real-time S&P 500 stock data with AI-powered market trend forecasting
 - Key focus: making complex AI output readable and actionable for a non-technical user
 - Stack: **Python, Streamlit, Node.js, SQL, LSTM neural network**
+<img width="1889" height="982" alt="image" src="https://github.com/user-attachments/assets/4863135a-40b0-49f9-a83c-30d71443869a" />
 
 ---
 
