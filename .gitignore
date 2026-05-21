@@ -1,0 +1,7 @@
+db/sp500.db
+model/sp500_model.h5
+model/scaler.pkl
+node_modules/
+__pycache__/
+*.pyc
+.env
