@@ -12,14 +12,11 @@ Full-stack S&P 500 dashboard with real-time data and LSTM-powered 30-day market 
 - Key focus: making complex AI output readable and actionable for a non-technical user
 - Side-by-side layout: historical price chart (left) + 30-day LSTM forecast (right)
 
-<img width="1889" height="982" alt="image" src="https://github.com/user-attachments/assets/4863135a-40b0-49f9-a83c-30d71443869a" />
 
 ---
 
 ## Demo
-
-![Dashboard](https://raw.githubusercontent.com/ronnphil/Stock-Market-Forecasting-Dashboard/main/docs/demo.png)
-
+<img width="1889" height="982" alt="image" src="https://github.com/user-attachments/assets/4863135a-40b0-49f9-a83c-30d71443869a" />
 > Live price refreshes every 60s · Historical chart supports 1M / 3M / 1Y / 5Y ranges · Forecast updates daily
 
 ---
