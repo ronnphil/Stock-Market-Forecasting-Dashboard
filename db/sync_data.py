@@ -25,10 +25,9 @@ def sync_historical(api_base=API_BASE, db_path=None):
 def get_live(api_base=API_BASE):
     response = requests.get(f'{api_base}/live')
     response.raise_for_status()
-    data = response.json()
-    print(f"Live: ${data['price']:.2f} ({data['change_pct']:+.2f}%)")
-    return data
+    return response.json()
 
 if __name__ == '__main__':
     sync_historical()
-    get_live()
+    data = get_live()
+    print(f"Live: ${data['price']:.2f} ({data['change_pct']:+.2f}%)")

@@ -42,7 +42,6 @@ def get_predictions():
     conn.close()
     return df
 
-# Live price header
 live = get_live()
 if live:
     color = 'green' if live['change'] >= 0 else 'red'
@@ -58,7 +57,7 @@ else:
 
 st.divider()
 
-# Side-by-side layout
+actual = get_historical(30)
 left, right = st.columns([2, 1])
 
 with left:
@@ -75,7 +74,6 @@ with right:
     st.subheader('30-Day Forecast')
     preds = get_predictions()
     if not preds.empty:
-        actual = get_historical(30)
         st.plotly_chart(build_forecast_chart(actual, preds), use_container_width=True)
         st.caption('Blue = actual · Orange dashed = LSTM prediction')
     else:
