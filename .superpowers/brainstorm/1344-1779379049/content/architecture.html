@@ -1,0 +1,68 @@
+<h2>System Architecture</h2>
+<p class="subtitle">Three independent layers — each with one job</p>
+
+<div class="section">
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+
+    <div style="flex:1;min-width:200px;background:#1a1a2e;border:1px solid #4a9eff;border-radius:8px;padding:16px;">
+      <div class="label" style="color:#4a9eff;">LAYER 1 — DATA</div>
+      <h3 style="margin:8px 0;">Node.js API Server</h3>
+      <p style="font-size:13px;color:#aaa;">Express.js on port 3001</p>
+      <ul style="font-size:13px;color:#ccc;padding-left:16px;margin:8px 0;">
+        <li><code>GET /api/live</code> — real-time S&P 500 price</li>
+        <li><code>GET /api/historical</code> — 5 years OHLCV data</li>
+      </ul>
+      <p style="font-size:12px;color:#888;">Uses: <code>yahoo-finance2</code>, <code>express</code></p>
+    </div>
+
+    <div style="display:flex;align-items:center;font-size:24px;color:#4a9eff;">→</div>
+
+    <div style="flex:1;min-width:200px;background:#1a2e1a;border:1px solid #4aff88;border-radius:8px;padding:16px;">
+      <div class="label" style="color:#4aff88;">LAYER 2 — AI + STORAGE</div>
+      <h3 style="margin:8px 0;">Python: LSTM + SQLite</h3>
+      <p style="font-size:13px;color:#aaa;">Fetches from Node.js, stores + predicts</p>
+      <ul style="font-size:13px;color:#ccc;padding-left:16px;margin:8px 0;">
+        <li>SQLite: <code>historical_data</code> table</li>
+        <li>SQLite: <code>predictions</code> table</li>
+        <li>LSTM model → 30-day forecast</li>
+      </ul>
+      <p style="font-size:12px;color:#888;">Uses: <code>tensorflow/keras</code>, <code>sqlite3</code>, <code>requests</code></p>
+    </div>
+
+    <div style="display:flex;align-items:center;font-size:24px;color:#4aff88;">→</div>
+
+    <div style="flex:1;min-width:200px;background:#2e1a1a;border:1px solid #ff884a;border-radius:8px;padding:16px;">
+      <div class="label" style="color:#ff884a;">LAYER 3 — UI</div>
+      <h3 style="margin:8px 0;">Streamlit Dashboard</h3>
+      <p style="font-size:13px;color:#aaa;">Reads from SQLite, displays everything</p>
+      <ul style="font-size:13px;color:#ccc;padding-left:16px;margin:8px 0;">
+        <li>Live price + daily change</li>
+        <li>Historical price chart</li>
+        <li>30-day LSTM forecast overlay</li>
+      </ul>
+      <p style="font-size:12px;color:#888;">Uses: <code>streamlit</code>, <code>plotly</code>, <code>pandas</code></p>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <h3>File Structure</h3>
+  <pre style="background:#111;padding:12px;border-radius:6px;font-size:12px;color:#ccc;">Financial_Assistant/
+├── api/                  ← Node.js server
+│   ├── server.js
+│   └── package.json
+├── model/                ← LSTM training + prediction
+│   ├── train.py
+│   ├── predict.py
+│   └── sp500_model.h5
+├── db/                   ← SQLite + data sync
+│   ├── init_db.py
+│   ├── sync_data.py
+│   └── sp500.db
+├── dashboard/            ← Streamlit app
+│   └── app.py
+└── requirements.txt</pre>
+</div>
+
+<p style="color:#888;font-size:13px;text-align:center;">Does this architecture look right? Let me know in the terminal.</p>
